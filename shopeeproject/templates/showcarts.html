@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title%}Shopee|Carts{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <!-- carts start here-->
+        <div class="col-md-9">
+            <div class="row">
+                {% for x in allcarts %}
+                <div class="col-md-4 mt-2">
+                
+                <div class="card" style="width: 22rem;">
+                <img src="{{x.productid.photos.url}}" class="card-img-top" alt="..." width="100px" height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.productid.productname}}</h5>
+                  <p class="card-text">{{x.productid.category}}</p>
+                  <p class="card-text">{{x.productid.desc}}</p>
+                  <p class="card-text">Rs.{{x.productid.price}}</p>
+                  <p>
+                    <strong>QTY:</strong>
+                    <a href="/updateqty/0/{{x.productid.productid}}"><button class="btn btn-danger">-</button></a>
+                    <input type="number" value="{{x.qty}}">
+                    <a href="/updateqty/1/{{x.productid.productid}}"><button class="btn btn-success">+</button></a>
+                  </p>
+                  <a href="/buy" class="btn btn-primary">Buy Now</a>
+                  <a href="/removecart/{{x.productid.productid}}" class="btn btn-primary">Remove</a>
+                </div>
+              </div>
+            
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        
+        <!-- carts end here-->
+
+        <!-- right side section start here-->
+        <div class="col-md-3">
+
+        </div>
+        <!-- right side section end here-->
+    </div>
+</div>
+
+{% endblock %}
